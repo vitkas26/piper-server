@@ -1,0 +1,9 @@
+.git
+.gradle
+.idea
+build
+python/venv
+models/*.onnx
+models/*.onnx.json
+*.wav
+.DS_Store
