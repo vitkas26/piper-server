@@ -19,10 +19,10 @@ object ServerConfig {
     val defaultLanguage: String = System.getenv("PIPER_DEFAULT_LANG") ?: "ru"
 
     // Каждый язык — отдельный .onnx голос, скачивается отдельно (python/setup.sh скачивает
-    // только ru). Полный список голосов: https://github.com/rhasspy/piper/blob/master/VOICES.md
+    // только ru; Dockerfile качает все 5 при сборке образа). Полный список голосов:
+    // https://github.com/rhasspy/piper/blob/master/VOICES.md
     // Переопределить путь: PIPER_VOICE_RU / PIPER_VOICE_EN / PIPER_VOICE_DE / PIPER_VOICE_ZH / PIPER_VOICE_TR.
-    // Имена файлов ниже для en/de/zh/tr — предположение по конвенции Piper, не проверены
-    // вживую — сверь с VOICES.md перед скачиванием.
+    // Все 5 имён ниже скачаны и проверены вживую (см. README).
     private val modelsDir = "${System.getProperty("user.dir")}/models"
 
     val voiceModelPaths: Map<String, String> = mapOf(
