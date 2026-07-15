@@ -23,6 +23,9 @@ object ServerConfig {
     // https://github.com/rhasspy/piper/blob/master/VOICES.md
     // Переопределить путь: PIPER_VOICE_RU / PIPER_VOICE_EN / PIPER_VOICE_DE / PIPER_VOICE_ZH / PIPER_VOICE_TR.
     // Все 5 имён ниже скачаны и проверены вживую (см. README).
+    // Для de в образе есть 2 голоса: de_DE-thorsten-medium (дефолт, муж.) и
+    // de_DE-kerstin-low (альтернатива, жен., качество ниже — low tier). Переключить
+    // на kerstin: PIPER_VOICE_DE=<modelsDir>/de_DE-kerstin-low.onnx.
     private val modelsDir = "${System.getProperty("user.dir")}/models"
 
     val voiceModelPaths: Map<String, String> = mapOf(

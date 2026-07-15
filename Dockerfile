@@ -45,6 +45,13 @@ RUN python/venv/bin/python -m piper.download_voices --download-dir /tmp/voices d
     && mv /tmp/voices/de_DE-thorsten-medium.onnx /tmp/voices/de_DE-thorsten-medium.onnx.json models/ \
     || echo "WARNING: голос de_DE-thorsten-medium не скачался — проверь имя в VOICES.md"
 
+# de_DE-kerstin-low — женский немецкий, альтернатива thorsten (мужской, medium).
+# low-tier — качество заметно ниже thorsten-medium. Дефолт для de не меняем
+# (PIPER_VOICE_DE в конце файла), голос доступен для ручного переключения.
+RUN python/venv/bin/python -m piper.download_voices --download-dir /tmp/voices de_DE-kerstin-low \
+    && mv /tmp/voices/de_DE-kerstin-low.onnx /tmp/voices/de_DE-kerstin-low.onnx.json models/ \
+    || echo "WARNING: голос de_DE-kerstin-low не скачался — проверь имя в VOICES.md"
+
 RUN python/venv/bin/python -m piper.download_voices --download-dir /tmp/voices zh_CN-huayan-medium \
     && mv /tmp/voices/zh_CN-huayan-medium.onnx /tmp/voices/zh_CN-huayan-medium.onnx.json models/ \
     || echo "WARNING: голос zh_CN-huayan-medium не скачался — проверь имя в VOICES.md"
@@ -66,6 +73,8 @@ ENV PIPER_PYTHON=/app/python/venv/bin/python
 ENV PIPER_WORKER_SCRIPT=/app/python/piper_worker.py
 ENV PIPER_VOICE_RU=/app/models/ru_RU-irina-medium.onnx
 ENV PIPER_VOICE_EN=/app/models/en_US-lessac-medium.onnx
+# дефолт thorsten (medium, мужской); альтернатива в образе — kerstin (low, женский):
+# de_DE-kerstin-low.onnx. Переключить: PIPER_VOICE_DE=/app/models/de_DE-kerstin-low.onnx
 ENV PIPER_VOICE_DE=/app/models/de_DE-thorsten-medium.onnx
 ENV PIPER_VOICE_ZH=/app/models/zh_CN-huayan-medium.onnx
 ENV PIPER_VOICE_TR=/app/models/tr_TR-dfki-medium.onnx
